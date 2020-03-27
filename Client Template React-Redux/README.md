@@ -1,0 +1,1 @@
+### Client Template with React.js and Redux
