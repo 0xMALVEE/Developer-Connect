@@ -9,6 +9,7 @@ import {
   NavLink,
   Container
 } from 'reactstrap';
+import {Link} from "react-router-dom";
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import RegisterModal from './auth/RegisterModal';
@@ -35,14 +36,23 @@ class AppNavbar extends Component {
 
     const authLinks = (
       <Fragment>
+
         <NavItem>
           <span className='navbar-text mr-3'>
             <strong>{user ? `Welcome ${user.name}` : ''}</strong>
           </span>
         </NavItem>
+        
+        <NavItem>
+          <Link className="nav-link" to="/create_post">Create Post</Link>
+        </NavItem>
+
         <NavItem>
           <Logout />
         </NavItem>
+
+
+
       </Fragment>
     );
 
@@ -61,7 +71,7 @@ class AppNavbar extends Component {
       <div>
         <Navbar color='dark' dark expand='sm' className='mb-5'>
           <Container>
-            <NavbarBrand href='/'>Server Template</NavbarBrand>
+            <NavbarBrand href='/'>Developer Connect</NavbarBrand>
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className='ml-auto' navbar>

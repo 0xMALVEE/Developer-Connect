@@ -8,6 +8,15 @@ const PostSchema = new Schema({
     type:Schema.Types.ObjectId,
     ref:"user"
   },
+  post_title:{
+    type: String,
+    required: true
+  },
+  post_description:{
+    type:String,
+    required: true
+  }
+  ,
   post: {
     type: String,
     required: true
@@ -44,4 +53,4 @@ const PostSchema = new Schema({
   }
 });
 
-module.exports = Posts = mongoose.model('posts', PostSchema);
+module.exports = Posts = mongoose.model('post', PostSchema);
