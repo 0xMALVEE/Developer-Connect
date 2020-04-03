@@ -15,6 +15,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { register } from '../../actions/authActions';
 import { clearErrors } from '../../actions/errorActions';
+import Loader from 'react-loader-spinner'
 
 class RegisterModal extends Component {
   state = {
@@ -24,7 +25,8 @@ class RegisterModal extends Component {
     password: '',
     username: '',
     github_profile: '',
-    msg: null
+    msg: null,
+    loading: false
   };
 
   static propTypes = {
@@ -69,7 +71,7 @@ class RegisterModal extends Component {
     e.preventDefault();
 
     const { name, email, password, username, github_profile } = this.state;
-
+    this.setState({loading: true})
     // Create user object
     const newUser = {
       name,
@@ -95,6 +97,16 @@ class RegisterModal extends Component {
           <ModalBody>
             {this.state.msg ? (
               <Alert color='danger'>{this.state.msg}</Alert>
+            ) : null}
+            {this.state.loading ? (
+              <Loader
+              className="text-center"
+              type="Puff"
+              color="#00BFFF"
+              height={100}
+              width={100}
+              timeout={50000000}
+           />
             ) : null}
             <Form onSubmit={this.onSubmit}>
               <FormGroup>

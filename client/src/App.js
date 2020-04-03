@@ -13,7 +13,8 @@ import CreatePost from "./components/CreatePost"
 import { Provider } from 'react-redux';
 import store from './store';
 import { loadUser } from './actions/authActions';
-
+import RenderSinglePost from "./components/Post/RenderSinglePost";
+import MyArticls from "./components/Post/MyArticls";
 
 import './bootstrap.min.css';
 import './App.css';
@@ -35,14 +36,18 @@ class App extends Component {
            <Route exact path="/">
                 <HomePage />
             </Route>
-         
-           
-             
+
             <Route exact path="/create_post">
               <CreatePost />
             </Route>
-           
-          
+
+            <Route exact path="/viewpost/:id">
+              <RenderSinglePost />
+            </Route>
+
+            <Route exact path="/myarticls">
+              <MyArticls />
+            </Route>
 
           </Switch>
         </div>

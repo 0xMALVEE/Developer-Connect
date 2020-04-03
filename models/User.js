@@ -19,6 +19,17 @@ const UserSchema = new Schema({
   github_profile_img:{
     type: String,
     required: true
+  },
+  skills:[
+    {
+      type: String
+    }
+  ],
+  developer_type:{
+    type : String
+  },
+  location:{
+    type: String
   }
   ,
   email: {

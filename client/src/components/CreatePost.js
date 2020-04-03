@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 import { Base64 } from 'js-base64';
 import axios from "axios";
+import  { Redirect } from 'react-router-dom'
+import Loader from 'react-loader-spinner'
 const ReactMarkdown = require('react-markdown')
 
 
@@ -10,6 +12,7 @@ class CreatePost extends Component{
     super(props);
 
     this.state = {
+      loading: false,
       success: false,
       error: "",
       firstTag: "",
@@ -20,11 +23,13 @@ class CreatePost extends Component{
       tags: "",
       title: "",
       description:"",
-      post:`<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">`
+      post:`<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"><style>code{color:white; padding:10px; background:#2e3a48 }</style>`
     }
   }
 
   handleCreatePost(){
+    this.setState({loading: true});
+
     const config = {
       headers: {
         "x-auth-token":`${localStorage.getItem("token")}`
@@ -41,8 +46,7 @@ class CreatePost extends Component{
 
     axios.post("/api/posts",data,config)
     .then(res => {
-      this.setState({posts:res.data, success: true, error: ""});
-      console.log(this.state.posts)
+      this.setState({posts:res.data, success: true, error: "", loading:false});
     })
     .catch(err => {
       if(err){
@@ -51,10 +55,14 @@ class CreatePost extends Component{
     })
   }
 
+ 
+
   render(){
     return(
       <div className="createArticleSection pb-5">
-       
+       {this.state.loading ? <div className="create-post-loading">
+        <Loader className="text-center" type="Puff" color="#00BFFF"height={100}   width={100} timeout={30000} /> <p className="text-center">Loading..</p>
+       </div> :null}
         <div className="container ">
 
       <h1 className="display-4 createArticleTitle">CREATE NEW ARTICLE </h1>
@@ -95,7 +103,7 @@ class CreatePost extends Component{
         </div>
 
           <div class="form-group">
-            <label for="">Write Post in Markdown or HTML,CSS (Bootstrap Pre Installed)</label>
+            <label for="">Write Post in Markdown or HTML,CSS (Bootstrap Pre Installed) (Write Code in html Code Tags)</label>
             <textarea id="createArticle" value={this.state.post} onChange={e => this.setState({post:e.target.value})} class="form-control" id="" rows="10"></textarea>
           </div>
 

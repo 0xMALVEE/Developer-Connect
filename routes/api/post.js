@@ -9,11 +9,25 @@ const User = require("../../models/User");
 
 // Get Posts
 router.get("/",function(req,res){
-  console.log(req.query.count)
   
   Post.find().sort({ _id: -1 }).limit(parseInt(req.query.count))
   .then(data => res.json(data));
 });
+
+//Get Single Post
+router.get("/single", function(req,res){
+  Post.findById(req.query.id)
+  .then(data => res.json(data))
+  .catch(err => res.json(err))
+})
+
+//Get All Posts That The User has
+router.get("/mypost", auth, function(req,res){
+  console.log(req.user.id);
+  Post.find({user:req.user.id})
+  .then(data => res.json(data))
+  .catch(err => res.json(err));
+})
 
 
 //Add Posts

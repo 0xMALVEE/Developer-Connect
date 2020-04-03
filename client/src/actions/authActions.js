@@ -35,6 +35,7 @@ export const loadUser = () => (dispatch, getState) => {
 
 // Register User
 export const register = ({ name, email, password, username, github_profile }) => dispatch => {
+ 
   // Headers
   const config = {
     headers: {

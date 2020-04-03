@@ -111,3 +111,93 @@ div.main-page-section-bottom{
 /* div.leftSideSection{
   background:#0d1219;
 } */
+
+div.social-links a {
+  padding:5px;
+  text-decoration: none;
+  color:white;
+}
+
+div.social-links a:hover{
+  color:gray;
+}
+
+
+.special-links-left :hover{
+  background:#2e3a48;
+}
+
+div.left-profile-button{
+  background: #2e3a48;
+  width:fit-content;
+  padding:3px;
+  border-radius: 10px;
+}
+
+div.left-profile-button:hover{
+  background: turquoise;
+}
+
+div.website-links a{
+  text-decoration: none;
+  color:#a7adb2;
+}
+
+
+div.website-links a:hover{
+  color:#8d95f2;  
+}
+div.website-links li{
+  list-style-type: none;
+  margin-bottom:5px;
+}
+
+
+div.single-post{
+  background: #1a2634;
+  color:white;
+  min-height: 100vh;
+}
+
+div.single-post-userinfo{
+  background:#2e3a48;
+  width:fit-content;
+  padding:5px;
+  border-radius: 10px;
+}
+
+div.single-post-userinfo:hover{
+  background:turquoise;
+}
+
+div.single-post-userinfo p{
+  margin-bottom: 0px;
+}
+a.this-is-the-link{
+  text-decoration: none;
+  color:white;
+}
+
+div.single-post-tags a{
+  text-decoration: none;
+  padding:5px;
+  background:#2e3a48;
+  color:white;
+  border-radius: 3px;
+  margin-right: 5px;
+}
+div.single-post-tags{
+  padding:15px 2px;
+}
+
+div.my-posts{
+  background: #0d1219;
+  min-height: 100vh;
+  color:white;
+}
+
+div.create-post-loading{
+  position: fixed;
+  top:45%;
+  left:45%;
+}

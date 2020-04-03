@@ -109,16 +109,26 @@ class AppNavbar extends Component {
           
 
           <div class="dropdown-divider"></div>
+
           <a class="dropdown-item" href="#">
           <NavItem>
-          <Link className="nav-link" to="/create_post">Create Article</Link>
-        </NavItem>
+           <Link className="nav-link" to="/create_post">Create Article</Link>
+          </NavItem>
           </a>
+
+          <a class="dropdown-item" href="#">
+            <NavItem>
+            <Link className="nav-link" to="/myarticls">My Articles</Link>
+            </NavItem>
+          </a>
+
           <a class="dropdown-item" href="#">
           <NavItem>
-          <Logout />
-        </NavItem>
+            <Logout />
+          </NavItem>
           </a>
+
+
         </div>
       </li>
 

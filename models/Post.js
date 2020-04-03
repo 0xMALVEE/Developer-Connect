@@ -53,7 +53,6 @@ const PostSchema = new Schema({
         required: true
       }
   }
-  
   ,
   likes: [
     {
