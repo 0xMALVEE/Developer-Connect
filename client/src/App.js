@@ -14,7 +14,8 @@ import { Provider } from 'react-redux';
 import store from './store';
 import { loadUser } from './actions/authActions';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
+
+import './bootstrap.min.css';
 import './App.css';
 
 class App extends Component {
@@ -29,17 +30,21 @@ class App extends Component {
         <Router>
         <div className='App'>
           <AppNavbar />
-            
-          <Container>
-           <Switch>
-             <Route exact path="/">
+          <Switch>
+
+           <Route exact path="/">
                 <HomePage />
-             </Route>
+            </Route>
+         
+           
+             
             <Route exact path="/create_post">
               <CreatePost />
             </Route>
-           </Switch>
-          </Container>
+           
+          
+
+          </Switch>
         </div>
         </Router>
       </Provider>

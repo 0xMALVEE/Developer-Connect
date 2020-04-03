@@ -7,6 +7,20 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
+  github_profile:{
+    type:String,
+    required: true
+  },
+  username:{
+    type: String,
+    required:true,
+    unique: true
+  },
+  github_profile_img:{
+    type: String,
+    required: true
+  }
+  ,
   email: {
     type: String,
     required: true,
@@ -19,7 +33,7 @@ const UserSchema = new Schema({
   register_date: {
     type: Date,
     default: Date.now
-  }
+  } 
 });
 
 module.exports = User = mongoose.model('user', UserSchema);

@@ -5,24 +5,48 @@ const auth = require('../../middleware/auth');
 
 // Post Model
 const Post = require('../../models/Post');
-
+const User = require("../../models/User");
 
 // Get Posts
-router.get("/",auth,function(req,res){
-  Post.find()
-  .then(data => res.json(data))
+router.get("/",function(req,res){
+  console.log(req.query.count)
+  
+  Post.find().sort({ _id: -1 }).limit(parseInt(req.query.count))
+  .then(data => res.json(data));
 });
 
 
 //Add Posts
 router.post("/", auth , function(req,res){
-  const newPost = new Post({
-    user:req.user.id,
-    post:req.body.post,
-    post_title: req.body.post_title,
-    post_description: req.body.post_description
-  }); 
-  newPost.save().then(posts => res.json(posts));
+  const {post,post_title,post_description,post_created, tags} = req.body;
+
+  if(!post || !post_title || !post_description || !post_created || !tags.firstTag || !tags.secondTag || !tags.thirdTag || !tags.fourthTag) {
+    return res.status(400).json({ msg: 'Please enter all fields' });
+  }
+ 
+  User.findById(req.user.id)
+  .then(user => {
+      const newPost = new Post({
+      user:req.user.id,
+      post:req.body.post,
+      post_title: req.body.post_title,
+      post_description: req.body.post_description,
+      post_username: user.name,
+      post_created: req.body.post_created,
+      tags:{
+        firstTag: req.body.tags.firstTag,
+        secondTag: req.body.tags.secondTag,
+        thirdTag: req.body.tags.thirdTag,
+        fourthTag: req.body.tags.fourthTag
+      },
+      github_username: user.github_profile,
+      user_image: user.github_profile_img
+    }); 
+    newPost.save().then(posts => res.json(posts));
+
+  })
+
+
 })
 
 

@@ -22,6 +22,8 @@ class RegisterModal extends Component {
     name: '',
     email: '',
     password: '',
+    username: '',
+    github_profile: '',
     msg: null
   };
 
@@ -66,13 +68,15 @@ class RegisterModal extends Component {
   onSubmit = e => {
     e.preventDefault();
 
-    const { name, email, password } = this.state;
+    const { name, email, password, username, github_profile } = this.state;
 
     // Create user object
     const newUser = {
       name,
       email,
-      password
+      password,
+      username,
+      github_profile
     };
 
     // Attempt to register
@@ -94,12 +98,32 @@ class RegisterModal extends Component {
             ) : null}
             <Form onSubmit={this.onSubmit}>
               <FormGroup>
-                <Label for='name'>Name</Label>
+                <Label for='name'>Display Name</Label>
                 <Input
                   type='text'
                   name='name'
                   id='name'
                   placeholder='Name'
+                  className='mb-3'
+                  onChange={this.onChange}
+                />
+
+                <Label for='username'>Username</Label>
+                <Input
+                  type='text'
+                  name='username'
+                  id='username'
+                  placeholder='Username'
+                  className='mb-3'
+                  onChange={this.onChange}
+                />
+
+                <Label for='githubprofile'>Valid Github Username</Label>
+                <Input
+                  type='text'
+                  name='github_profile'
+                  id='githubprofile'
+                  placeholder='Put GitHub Username Only'
                   className='mb-3'
                   onChange={this.onChange}
                 />

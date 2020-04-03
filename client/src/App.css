@@ -19,3 +19,95 @@
   opacity: 0.01;
   transition: opacity 1000ms ease-in;
 }
+
+
+div.headerSection{
+  height: 100vh;  
+  display: flex;
+  align-items: center;
+  background-image: url('https://wallpaperplay.com/walls/full/6/1/c/129775.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+div.recentPostSection{
+  background: #0d1219;
+  color:#f9fafa;
+}
+
+div.eachPost{
+  background:#1a2634;
+  padding:16px;
+  margin-bottom: 12px;
+}
+
+div.dropdown-menu{
+  background:#1a2634;
+  color:white;
+  
+}
+
+button.dropdown-item :hover{
+  
+  background-color:none;
+}
+
+a.dropdown-item :hover{
+  background: #0d1219;
+  color:white;
+}
+
+div.dropdown-divider {
+  border-top: 1px solid #525f3d;
+}
+
+div.modal-content{
+  background: #1a2634;
+  color:white;
+}
+
+div.createArticleSection{
+  background:#1a2634;
+  color:white;
+  font-family: Consolas;
+}
+
+.form-control{
+  background-color:#1a2634 !important;
+  color:white !important;
+  font-family: Consolas;
+}
+h1.createArticleTitle{
+  padding-top:90px;
+}
+
+.my-btn{
+  background:#2e3a48;
+  border-radius: 20px;
+  color:#c2c6ca;
+  border:0px;
+  padding:14px;
+}
+
+a#tags{
+  text-decoration: none;
+  color:white;
+  padding:5px;
+}
+
+#write-a-post :hover{
+  color:gray;
+}
+
+a.account-btn-nav{
+  margin-left:15px;
+  margin-right: 15px;
+}
+
+div.main-page-section-bottom{
+  background:#0d1219;
+}
+/* div.leftSideSection{
+  background:#0d1219;
+} */

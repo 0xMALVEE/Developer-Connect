@@ -7,7 +7,7 @@ import {
   Nav,
   NavItem,
   NavLink,
-  Container
+  Container,UncontrolledDropdown,DropdownToggle,DropdownItem,DropdownMenu
 } from 'reactstrap';
 import {Link} from "react-router-dom";
 import { connect } from 'react-redux';
@@ -15,11 +15,22 @@ import PropTypes from 'prop-types';
 import RegisterModal from './auth/RegisterModal';
 import LoginModal from './auth/LoginModal';
 import Logout from './auth/Logout';
+import { toggleModal } from "../actions/navModalAction";
 
 class AppNavbar extends Component {
-  state = {
-    isOpen: false
-  };
+  constructor(props){
+    super(props);
+    this.state = {
+      isOpen: false,
+      user: null
+    };
+  }
+ 
+
+  componentDidMount(){
+    
+    
+  }
 
   static propTypes = {
     auth: PropTypes.object.isRequired
@@ -31,15 +42,96 @@ class AppNavbar extends Component {
     });
   };
 
+ 
+
   render() {
+    
+
     const { isAuthenticated, user } = this.props.auth;
+   
 
     const authLinks = (
       <Fragment>
 
-        <NavItem>
+
+
+          {/* <UncontrolledDropdown nav inNavbar>
+              <DropdownToggle nav caret>
+                Options
+              </DropdownToggle>
+              <DropdownMenu right>
+                <DropdownItem>
+                  <NavItem>
+                    <span className='navbar-text mr-3'>
+                      <strong>{user ? `User: ${user.name}` : ''}</strong>
+                    </span>
+                  </NavItem>
+                </DropdownItem>
+                <DropdownItem>
+                <NavItem>
+          <Link className="nav-link" to="/create_post">Create Post</Link>
+        </NavItem>
+                </DropdownItem>
+                <DropdownItem>
+                <NavItem>
+          <Logout />
+        </NavItem>
+                </DropdownItem>
+              </DropdownMenu>
+            </UncontrolledDropdown> */}
+
+      <li class="nav-item">
+        <Link id="write-a-post" style={{background:"#26d9ca",color:"black",borderRadius:"3px"}} className="nav-link" to="/create_post"><strong>Write A post</strong></Link>
+      </li>
+
+
+<li class="nav-item dropdown text-left">
+        <a class="account-btn-nav nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Account
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">
+          <NavItem>
+          <span className='navbar-text mr-3' style={{color:"white"}}>
+            <strong>{user ? `${user.name}` : ''}</strong>
+          </span>
+
+          <NavItem>
           <span className='navbar-text mr-3'>
-            <strong>{user ? `Welcome ${user.name}` : ''}</strong>
+            <strong>{user ? `@${user.username}` : ''}</strong>
+          </span>
+
+        </NavItem>
+
+        </NavItem>
+          </a>
+
+          
+
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">
+          <NavItem>
+          <Link className="nav-link" to="/create_post">Create Article</Link>
+        </NavItem>
+          </a>
+          <a class="dropdown-item" href="#">
+          <NavItem>
+          <Logout />
+        </NavItem>
+          </a>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <img style={{borderRadius:"50px"}} height="45" width="45" src={user ? `${user.github_profile_img}` : ''}></img>
+      </li>
+
+
+
+
+        {/* <NavItem>
+          <span className='navbar-text mr-3'>
+            <strong>{user ? `User: ${user.name}` : ''}</strong>
           </span>
         </NavItem>
         
@@ -49,7 +141,7 @@ class AppNavbar extends Component {
 
         <NavItem>
           <Logout />
-        </NavItem>
+        </NavItem> */}
 
 
 
@@ -59,7 +151,7 @@ class AppNavbar extends Component {
     const guestLinks = (
       <Fragment>
         <NavItem>
-          <RegisterModal />
+          <RegisterModal isOpen={this.props.modal.isOpen} toggleIsOpen={this.toggleIsOpen}/>
         </NavItem>
         <NavItem>
           <LoginModal />
@@ -69,7 +161,7 @@ class AppNavbar extends Component {
 
     return (
       <div>
-        <Navbar color='dark' dark expand='sm' className='mb-5'>
+        <Navbar color='dark' dark expand='sm' className='mb-5 fixed-top'>
           <Container>
             <NavbarBrand href='/'>Developer Connect</NavbarBrand>
             <NavbarToggler onClick={this.toggle} />
@@ -86,10 +178,11 @@ class AppNavbar extends Component {
 }
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  modal: state.modal
 });
 
 export default connect(
   mapStateToProps,
-  null
+  { toggleModal }
 )(AppNavbar);
