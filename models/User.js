@@ -26,10 +26,48 @@ const UserSchema = new Schema({
     }
   ],
   developer_type:{
-    type : String
+    type : String,
+    default: "Font-End Developer"
   },
   location:{
+    type: String,
+    default: ""
+  },
+  work:{
+    type: String,
+    default: ""
+  },
+  gender:{
+    type: String,
+    default: "Male"
+  },
+  bio:{
+    type :String,
+    default: ""
+  },
+  github_link:{
+    type: String,
+    default: ""
+  },
+  twitter_link:{
+    type: String,
+    default: ""
+  },
+  youtube_link:{
+    type: String,
+    default: ""
+  },
+  website_link:{
+    type: String,
+    default: ""
+  },
+  // Store Article Id Here
+  reading_list:[{
     type: String
+  }],
+  location:{
+    type: String,
+    default: ""
   }
   ,
   email: {

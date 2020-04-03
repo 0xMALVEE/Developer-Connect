@@ -90,21 +90,22 @@ class AppNavbar extends Component {
         Account
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">
-          <NavItem>
-          <span className='navbar-text mr-3' style={{color:"white"}}>
-            <strong>{user ? `${user.name}` : ''}</strong>
-          </span>
+          <Link class="dropdown-item" to={user ?`/user/${user.username}` : null}>
+            <NavItem>
+            <span className='navbar-text mr-3' style={{color:"white"}}>
+              <strong>{user ? `${user.name}` : ''}</strong>
+            </span>
+            </NavItem>
 
-          <NavItem>
-          <span className='navbar-text mr-3'>
-            <strong>{user ? `@${user.username}` : ''}</strong>
-          </span>
+            <NavItem>
+            <span className='navbar-text mr-3'>
+              <strong>{user ? `@${user.username}` : ''}</strong>
+            </span>
 
-        </NavItem>
+          </NavItem>
 
-        </NavItem>
-          </a>
+       
+          </Link>
 
           
 
@@ -119,6 +120,12 @@ class AppNavbar extends Component {
           <a class="dropdown-item" href="#">
             <NavItem>
             <Link className="nav-link" to="/myarticls">My Articles</Link>
+            </NavItem>
+          </a>
+
+          <a class="dropdown-item" href="#">
+            <NavItem>
+              <Link className="nav-link" to={user ? `/complete_profile/${user.username}`: null}>Complete Profile</Link>
             </NavItem>
           </a>
 

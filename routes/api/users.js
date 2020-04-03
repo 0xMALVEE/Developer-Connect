@@ -4,9 +4,53 @@ const bcrypt = require('bcryptjs');
 const config = require('config');
 const jwt = require('jsonwebtoken');
 const axios = require("axios");
+const auth = require("../../middleware/auth");
 
 // User Model
 const User = require('../../models/User');
+const Post = require("../../models/Post");
+
+//Get User and User Posts With Username
+router.get("/",function(req,res){
+  User.find({username:req.query.username})
+  .then(data => {
+    Post.find({user: data[0]._id})
+    .then( postData =>{
+       res.json({userData:data[0],userPosts:postData});
+      })
+    .catch(err => res.json(err))
+  })
+  .catch(err => res.json(err))
+})
+
+//Get Only User Data With User name
+router.get("/only",function(req,res){
+  User.find({username:req.query.username})
+  .then(data => {
+    res.json(data)
+  })
+  .catch(err => res.json(err))
+})
+
+//Update/Complete User Profile
+router.post("/complete", auth, function(req,res){
+  User.findOneAndUpdate({_id:req.user.id}, { 
+    developer_type:req.body.developer_type,
+    location: req.body.location,
+    work: req.body.work,
+    gender: req.body.gender,
+    bio: req.body.bio,
+    github_link: req.body.github_link,
+    twitter_link: req.body.twitter_link,
+    youtube_link: req.body.youtube_link,
+    website_link: req.body.website_link
+  } )
+  .then(data => {
+    res.json(data);
+  })
+  .catch(err => res.json(err))
+})
+
 
 // @route   POST api/users
 // @desc    Register new user

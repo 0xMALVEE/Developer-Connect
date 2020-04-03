@@ -76,7 +76,7 @@ class HomePage extends Component{
                 <div className="leftSideSectionc container">
 
                   {this.props.auth.user ?<div className="pt-5 ">
-                      <Link style={{textDecoration:"none"}}>
+                      <Link to={`/user/${this.props.auth.user.username}`} style={{textDecoration:"none"}}>
                         <div className="left-profile-button">
                         <img style={{borderRadius:"50px",border:"2px solid white"}} height="60" width="60" src={this.props.auth.user ? this.props.auth.user.github_profile_img : ""} />
 

@@ -15,6 +15,8 @@ import store from './store';
 import { loadUser } from './actions/authActions';
 import RenderSinglePost from "./components/Post/RenderSinglePost";
 import MyArticls from "./components/Post/MyArticls";
+import User from "./components/User/User";
+import CompleteUserProfile from "./components/User/CompleteUserProfile";
 
 import './bootstrap.min.css';
 import './App.css';
@@ -47,6 +49,14 @@ class App extends Component {
 
             <Route exact path="/myarticls">
               <MyArticls />
+            </Route>
+
+            <Route exact path="/user/:username">
+              <User />
+            </Route>
+
+            <Route exact path="/complete_profile/:username">
+              <CompleteUserProfile />
             </Route>
 
           </Switch>
