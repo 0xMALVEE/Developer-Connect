@@ -18,7 +18,8 @@ class HomePage extends Component{
 
     this.state = {
       data : null,
-      count: 3
+      count: 3,
+      skip: 0
     }
   }
 
@@ -30,14 +31,14 @@ class HomePage extends Component{
       }
     };
 
-    axios.get(`/api/posts?count=${this.state.count}`,config)
+    axios.get(`/api/posts?count=${this.state.count}&skip=0`,config)
     .then(res => this.setState({data:res.data}))
     .catch(err => console.log(err))
   }
 
   fetchPosts = () =>{
-    this.setState({count: this.state.count + 3})
-
+    // this.setState({count: this.state.count + 3})
+    this.setState({skip: this.state.skip + 3})
 
     const config = {
       headers: {
@@ -45,8 +46,10 @@ class HomePage extends Component{
       }
     };
 
-    axios.get(`/api/posts?count=${this.state.count}`,config)
-    .then(res => this.setState({data:res.data}))
+    axios.get(`/api/posts?count=${this.state.count}&skip=${this.state.skip}`,config)
+    .then(res => {
+      console.log(res.data);
+      this.setState({data:[...this.state.data, ...res.data]})})
     .catch(err => console.log(err))
   }
 

@@ -10,7 +10,10 @@ const User = require("../../models/User");
 // Get Posts
 router.get("/",function(req,res){
   
-  Post.find().sort({ _id: -1 }).limit(parseInt(req.query.count))
+  Post.find()
+  .sort({ _id: -1 })
+  .skip(parseInt(req.query.skip))
+  .limit(parseInt(req.query.count))
   .then(data => res.json(data));
 });
 

@@ -37,30 +37,30 @@ class TheUser extends Component{
         <div className="container pt-5 mt5 text-white">
           <div className="user-info-header p-5">
             <div className="row ml-0 mr-0">
-              <div className="col-md-8 col-lg-8">
-                <div className="d-flex"> 
+              <div className="col-md-8 col-lg-8 ">
+                <div className="d-flex user-on-mobile"> 
                 <img style={{borderRadius:"50%",border:"4px solid white"}} height="225" width="225" src={this.state.data.github_profile_img}/>
 
-                  <div className="p-5">
+                  <div className="p-5 user-on-mobile-2">
                     <h1 className="">{this.state.data.name}</h1>
                     {this.state.data.developer_type ? <p style={{color:"#747c85", fontStyle:"italic"}}> {this.state.data.developer_type}</p> : null}
 
                     {this.state.data.bio ? <p>{this.state.data.bio}</p> : null}
 
                     <div className="user-social-links">
-                      {this.state.data.github_link ? <a href={this.state.data.github_link}>
+                      {this.state.data.github_link ? <a target="_blank" href={this.state.data.github_link}>
                         <i className="fab fa-github fa-2x"></i>
                       </a> :null}
                       
-                      {this.state.data.twitter_link ? <a href={this.state.data.twitter_link}>
+                      {this.state.data.twitter_link ? <a target="_blank" href={this.state.data.twitter_link}>
                         <i className="fab fa-twitter fa-2x"></i>
                       </a> :null}
 
-                      {this.state.data.youtube_link ? <a href={this.state.data.youtube_link}>
+                      {this.state.data.youtube_link ? <a target="_blank" href={this.state.data.youtube_link}>
                         <i className="fab fa-youtube fa-2x"></i>
                       </a> :null}
 
-                      {this.state.data.website_link ? <a href={this.state.data.website_link}>
+                      {this.state.data.website_link ? <a target="_blank" href={this.state.data.website_link}>
                         <i class="fas fa-blog fa-2x"></i>
                       </a> :null}
                       
