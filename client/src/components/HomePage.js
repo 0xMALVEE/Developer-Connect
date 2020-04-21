@@ -60,7 +60,8 @@ class HomePage extends Component{
           <div className="container text-white">
             <h1>Connect With Developers  </h1>
             <h1>Expand Your Knowledge</h1>
-            <a className="btn btn-success text-white mt-5">{
+            <br/>
+            <a style={{fontSize:"30px",backgroundColor:"#26d9ca",padding:"10px"}} className="text-white mt-5">{
               this.props.auth.isAuthenticated? "THANKS FOR JOINING THE COMMUNITY" : "JOIN THE COMMUNITY"
             }</a>
           </div>
