@@ -12,11 +12,20 @@ const Post = require("../../models/Post");
 
 //Get All User
 router.get("/get_all_users",function(req,res){
-  User.find()
+  if(req.query.developer_type == "All Developer"){
+    User.find()
+    .sort({ _id: -1 })
+    .skip(parseInt(req.query.skip))
+    .limit(parseInt(req.query.count))
+    .then(data => res.json(data))
+    .catch(err => res.end(err));
+  }
+  User.find({developer_type: req.query.developer_type})
   .sort({ _id: -1 })
   .skip(parseInt(req.query.skip))
   .limit(parseInt(req.query.count))
-  .then(data => res.json(data));
+  .then(data => res.json(data))
+  .catch(err => res.end(err));
 });
 
 //Get User and User Posts With Username

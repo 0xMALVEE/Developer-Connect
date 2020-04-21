@@ -11,21 +11,28 @@ class ConnectDev extends Component{
     this.state = {
       users: null,
       skip: 0,
-      count: 3
+      count: 3,
+      developer_type:"All Developer"
     }
   }
   
   componentDidMount(){
-    axios.get(`/api/users/get_all_users?count=${this.state.count}&skip=${this.state.skip}`)
-    .then(res => this.setState({users:res.data}));
+    axios.get(`/api/users/get_all_users?count=${this.state.count}&skip=${this.state.skip}&developer_type=${this.state.developer_type}`)
+    .then(res => this.setState({users:[...res.data]}));
   }
 
   fetchUsers = () =>{
 
     this.setState({skip: this.state.skip + 3})
 
-    axios.get(`/api/users/get_all_users?count=${this.state.count}&skip=${this.state.skip}`)
+    axios.get(`/api/users/get_all_users?count=${this.state.count}&skip=${this.state.skip}&developer_type=${this.state.developer_type}`)
     .then(res => this.setState({users: [...this.state.users, ...res.data]}))
+  }
+
+  fetchDeveloperByType = ()=>{
+    this.setState({skip: 0});
+    axios.get(`/api/users/get_all_users?count=${this.state.count}&skip=${this.state.skip}&developer_type=${this.state.developer_type}`)
+    .then(res => this.setState({users: [...res.data]}))
   }
 
   render(){
@@ -37,6 +44,30 @@ class ConnectDev extends Component{
           <div className="row ml-0 mr-0 mt-5">
             <div className="col-md-3">
               <h4>Filter Search</h4>
+              
+
+              <div class="form-group">
+                <select value={this.state.developer_type} class="form-control" id="exampleFormControlSelect1" onChange={e=>{ 
+                  this.setState({developer_type: e.target.value});
+                  }}>
+                  <option value="All Developer">All Developer</option>
+                  <option value="Font-End Developer">Font-End Developer</option>
+                  <option value="Back-End Developer">Back-End Developer</option>
+                  <option value="DEV OPS Developer">DEV OPS Developer</option>
+                  <option value="Game Developer">Game Developer</option>
+                  <option value="Web Developer">Web Developer</option>
+                  <option value="Full Stack Developer">Full Stack Developer</option>
+                  <option value="Unity Developer">Unity Developer</option>
+                  <option value="Software Developer">Software Developer</option>
+                  <option value="MERN Stack Developer">MERN Stack Developer</option>
+                  <option value="MEAN Stack Developer">MEAN Stack Developer</option>
+                </select>
+               </div>
+
+               <button className="btn btn-success" onClick={this.fetchDeveloperByType}>Filter</button>
+
+               <p className="mt-4">Note: double click the button </p>
+
             </div>
             <div className="col-md-9">
 
