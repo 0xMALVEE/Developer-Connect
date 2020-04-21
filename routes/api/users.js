@@ -10,6 +10,15 @@ const auth = require("../../middleware/auth");
 const User = require('../../models/User');
 const Post = require("../../models/Post");
 
+//Get All User
+router.get("/get_all_users",function(req,res){
+  User.find()
+  .sort({ _id: -1 })
+  .skip(parseInt(req.query.skip))
+  .limit(parseInt(req.query.count))
+  .then(data => res.json(data));
+});
+
 //Get User and User Posts With Username
 router.get("/",function(req,res){
   User.find({username:req.query.username})
@@ -120,15 +129,8 @@ router.post('/', (req, res) => {
               
             })
             .catch(error => res.status(400).json({msg: "Github Username Is Not Valid"}));
-
-            
-
-
           }
         })
-
-      
-
     })
 });
 

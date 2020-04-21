@@ -17,6 +17,7 @@ import RenderSinglePost from "./components/Post/RenderSinglePost";
 import MyArticls from "./components/Post/MyArticls";
 import User from "./components/User/User";
 import CompleteUserProfile from "./components/User/CompleteUserProfile";
+import ConnectDev from "./components/dev/ConnectDev";
 
 import './bootstrap.min.css';
 import './App.css';
@@ -57,6 +58,10 @@ class App extends Component {
 
             <Route exact path="/complete_profile/:username">
               <CompleteUserProfile />
+            </Route>
+
+            <Route exact path="/connect_dev">
+              <ConnectDev />
             </Route>
 
           </Switch>

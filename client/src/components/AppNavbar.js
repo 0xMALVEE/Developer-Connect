@@ -84,13 +84,17 @@ class AppNavbar extends Component {
         <Link id="write-a-post" style={{background:"#26d9ca",color:"black",borderRadius:"3px"}} className="nav-link" to="/create_post"><strong>Write A post</strong></Link>
       </li>
 
+      <li class="nav-item">
+        <Link id="write-a-post" className="nav-link" to="/connect_dev"><strong>ConnectDev</strong></Link>
+      </li>
+
 
 <li class="nav-item dropdown text-left">
         <a class="account-btn-nav nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Account
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <Link class="dropdown-item" to={user ?`/user/${user.username}` : null}>
+          <Link class="dropdown-item" to={user ?`/user/${user.username}` : ""}>
             <NavItem>
             <span className='navbar-text mr-3' style={{color:"white"}}>
               <strong>{user ? `${user.name}` : ''}</strong>
@@ -125,7 +129,7 @@ class AppNavbar extends Component {
 
           <a class="dropdown-item" href="#">
             <NavItem>
-              <Link className="nav-link" to={user ? `/complete_profile/${user.username}`: null}>Complete Profile</Link>
+              <Link className="nav-link" to={user ? `/complete_profile/${user.username}`: ""}>Complete Profile</Link>
             </NavItem>
           </a>
 

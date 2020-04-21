@@ -108,7 +108,7 @@ class HomePage extends Component{
 
                     </div>: <div>
 
-                      <h1 className="pt-5 text-white">PLEASE LOGIN TO ACCESS MORE STUFF</h1>
+                      <h1 className="pt-5 text-white">PLEASE LOGIN TO ACCESS MORE </h1>
                       <KeyLinks />
                     </div> }
 
@@ -180,18 +180,9 @@ class HomePage extends Component{
              
 
             </div>
-          </div>
-
-
-                
+          </div>    
               </div>
-
            </div> 
-
-
-        
-
-
       </div>
     )
   }

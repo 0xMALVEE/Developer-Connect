@@ -258,6 +258,11 @@ body{
   color:white;
 }
 
+div.connect_dev_user{
+  background: #20d4cd0f;
+  padding:9px;
+}
+
 @media screen and (max-width: 900px) {
   div.user-on-mobile{
     display: block !important;
