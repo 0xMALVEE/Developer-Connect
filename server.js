@@ -10,6 +10,8 @@ app.use(express.json());
 
 // DB Config
 const db = config.get('mongoURI');
+//Local - mongodb://localhost:27017/devconnect
+//Online - mongodb+srv://MAlvee8141:PASSWORD@chatcluster-lymln.mongodb.net/ChatCluster?retryWrites=true&w=majority
 
 // Connect to MongoDB Database
 mongoose

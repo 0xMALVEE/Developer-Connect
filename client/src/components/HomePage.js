@@ -71,7 +71,7 @@ class HomePage extends Component{
 
 
           {/* Recent Posts By Developers */}
-          <div className="row mr-0 ml-0 main-page-section-bottom ">
+          <div className="row mr-0 ml-0 main-page-section-bottom " style={{padding:50}}>
              
 
            

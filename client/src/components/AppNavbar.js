@@ -184,7 +184,7 @@ class AppNavbar extends Component {
       <div>
         <Navbar color='dark' dark expand='sm' className='mb-5 fixed-top'>
           <Container>
-            <NavbarBrand href='/'> <Link to="/" className="dev-brand">Developer Connect</Link></NavbarBrand>
+            <NavbarBrand href='/'> <Link to="/" className="dev-brand">Devconnec</Link></NavbarBrand>
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className='ml-auto' navbar>

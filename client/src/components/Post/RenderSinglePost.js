@@ -31,7 +31,7 @@ class Render extends Component{
               <div className="container">
               <h1 className=" pt-5" style={{marginTop:"30px"}}>{this.state.data.post_title}</h1>
               <p>Created At : {this.state.data.post_created}</p>
-                <Link className="this-is-the-link">
+                <Link className="this-is-the-link" to={`/user/${this.state.data.post_username}`}>
                   <div className="single-post-userinfo">
                     <img src={this.state.data.user_image} height="50" width="50" style={{borderRadius:"50px",border:"2px solid white"}} />
                     <p>@{this.state.data.post_username}</p>

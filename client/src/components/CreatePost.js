@@ -47,6 +47,7 @@ class CreatePost extends Component{
     axios.post("/api/posts",data,config)
     .then(res => {
       this.setState({posts:res.data, success: true, error: "", loading:false});
+      
     })
     .catch(err => {
       if(err){

@@ -48,7 +48,7 @@ router.post("/", auth , function(req,res){
       post:req.body.post,
       post_title: req.body.post_title,
       post_description: req.body.post_description,
-      post_username: user.name,
+      post_username: user.username,
       post_created: req.body.post_created,
       tags:{
         firstTag: req.body.tags.firstTag,
