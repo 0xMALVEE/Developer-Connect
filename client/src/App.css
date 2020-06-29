@@ -263,6 +263,17 @@ div.connect_dev_user{
   padding:9px;
 }
 
+/* Comments */
+div.each-comment_{
+  background-color: #0d1219;
+  padding:8px;
+  border-radius: 10px;
+}
+
+div.each-comment_ p{
+  margin-bottom: 0px;
+}
+
 @media screen and (max-width: 900px) {
   div.user-on-mobile{
     display: block !important;

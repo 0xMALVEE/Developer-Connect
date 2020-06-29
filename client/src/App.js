@@ -18,6 +18,7 @@ import MyArticls from "./components/Post/MyArticls";
 import User from "./components/User/User";
 import CompleteUserProfile from "./components/User/CompleteUserProfile";
 import ConnectDev from "./components/dev/ConnectDev";
+import ReadingList from "./components/ReadingList/ReadingList";
 
 import './bootstrap.min.css';
 import './App.css';
@@ -42,6 +43,10 @@ class App extends Component {
 
             <Route exact path="/create_post">
               <CreatePost />
+            </Route>
+
+            <Route exact path="/reading_list">
+              <ReadingList />
             </Route>
 
             <Route exact path="/viewpost/:id">

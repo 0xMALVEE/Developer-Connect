@@ -97,7 +97,7 @@ class HomePage extends Component{
                     <div className="container mt-5 mb-5">
 
                       <div className="mb-2 special-links-left">
-                        <Link className="" style={{textDecoration:"none",color:"white"}}><i class="fas fa-book"></i> Reading List</Link>
+                        <Link to="/reading_list" className="" style={{textDecoration:"none",color:"white"}}><i class="fas fa-book"></i> Reading List</Link>
                       </div>
                       <div className="special-links-left">
                        <Link  style={{textDecoration:"none",color:"white"}}><i class="fas fa-play-circle"></i> Videos</Link>
@@ -122,11 +122,13 @@ class HomePage extends Component{
 
               <div className="recentPostSection">
             <div className="container pt-5">
-              <h1 className="display-4" style={{fontSize:"40px"}}>RECENT ARTICLES BY DEVELOPERS</h1>
+             
                 
               
-
-                {this.state.data != null? (
+              {this.props.auth.user? (
+                <React.Fragment>
+                   <h1 className="display-4" style={{fontSize:"40px"}}>RECENT ARTICLES BY DEVELOPERS</h1>
+{this.state.data != null? (
                   <React.Fragment>
                   <InfiniteScroll hasMore={true} next={this.fetchPosts} loader={
                      <Loader className="text-center" type="Puff" color="#00BFFF"height={100}   width={100} timeout={3000} //3 secs
@@ -177,6 +179,9 @@ class HomePage extends Component{
                     </InfiniteScroll>
                   </React.Fragment>
                 ) :null}
+                </React.Fragment>
+              ) :null}
+                
              
 
             </div>
