@@ -6,6 +6,7 @@ const auth = require('../../middleware/auth');
 // Post Model
 const Post = require('../../models/Post');
 const User = require("../../models/User");
+const ReadingList = require('../../models/ReadingList');
 
 // Get Posts
 router.get("/",function(req,res){
@@ -74,6 +75,36 @@ router.delete('/:id', auth, (req, res) => {
     .catch(err => res.json({error:"No Post Found"}))
 });
 
+//Add To Reading List
+router.post("/reading",auth,(req,res)=>{
+  const newReadingList = new ReadingList({
+    user_id: req.user.id,
+    post_id:req.body.post_id,
+    post_title: req.body.post_title,
+    date: req.body.date,
+    post_description: req.body.post_description
+  }); 
+  newReadingList.save().then(reading => res.json(reading));
+})
+
+//Delete From Reading List
+router.get("/reading",(req,res)=>{
+  ReadingList.findByIdAndDelete(req.query.id)
+  .then(data=> {
+    ReadingList.find({user_id :req.query.userid})
+    .then(data => {res.json(data)})
+    .catch(error=> res.json({error:"erroru 404"}))
+  })
+  .catch(err=> console.log(err))
+})
+
+//Get Reading List
+router.get("/readinglist/:userid",(req,res)=>{
+  ReadingList.find({user_id :req.params.userid})
+  .then(data => {res.json(data)})
+  .catch(error=> res.json({error:"erroru 404"}))
+})
+
 //Add Like
 router.post("/like/:postid",auth,function(req,res){
   Post.findById(req.params.postid).then(post =>{
@@ -105,19 +136,26 @@ router.delete("/unlike/:postid",auth,function(req,res){
 });
 
 //Add comments
-router.post("/comment/:postid",auth,function(req,res){
-  Post.findById(req.params.postid).then(post =>{
-   const newComment = {
-     text:req.body.text,
-     name:req.body.name,
-     user:req.user.id
-   }
+router.post("/comment",auth,function(req,res){
+ User.findById(req.user.id)
+ .then(user=>{
+  Post.findById(req.body.post_id).then(post =>{
+    const newComment = {
+      text:req.body.text,
+      name:user.username,
+      user:req.user.id
+    }
+ 
+    post.comments.unshift(newComment);
+    post.save().then(post => res.json(post))
+    .catch(err => res.status(404).json({error:"Post not found"}))
+ 
+   })
+ })
 
-   post.comments.unshift(newComment);
-   post.save().then(post => res.json(post))
-   .catch(err => res.status(404).json({error:"Post not found"}))
+ 
 
-  })
+
 });
 
 //Delete Comment
