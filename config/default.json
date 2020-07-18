@@ -1,5 +1,5 @@
 {
-  "mongoURI": "mongodb://localhost:27017/devconnect",
+  "mongoURI": "mongodb+srv://MAlvee8141:IAMABOYOFBD8141@chatcluster-lymln.mongodb.net/ChatCluster?retryWrites=true&w=majority",
   "jwtSecret": "sl_myJwtSecret"
   
   
